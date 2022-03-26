@@ -12,7 +12,36 @@ int main()
 	seat=(int **)calloc(101,sizeof(int *));
 	for (i=0;i<3;i++)
 		*(seat+i)=(int *)calloc(101,sizeof(int ));
-	int x;
+	int x,y;
+
+        while(y!=4)
+	{
+		choice=choice2();
+		switch(choice)
+		{
+			case 1:
+				printf("\nUser Login");
+				break;
+			case 2:
+				printf("\nRegisteration screen");
+				break;
+			case 3:
+				printf("\n Admin Login");
+				break;
+			case 4:
+				y=4;
+				printf("\nExit");
+				break;
+                        default:
+				printf("\n Enter the correct Choice\n");
+
+				break;
+		}
+	}
+
+
+
+
 	while(x!=5)
 	{
 		choice=choice1();
@@ -42,6 +71,25 @@ int main()
 		}
 	}
 }
+
+
+//function for the first page 
+int choice2(void)
+{
+	int choice;
+	printf("                      Movie Ticket Booking System\n");
+	printf(" ==================================================================\n");
+	printf("||             1- To User Login                                    ||\n");
+	printf("||             2- To User Register                                 ||\n");
+	printf("||             3- To Admin Login                                  ||\n");
+	printf("||             4- Exit system:                                    ||\n");
+	printf("||================================================================||\n");
+	printf("  Enter your choice: ");
+	scanf("%d",&choice);
+	return choice;
+}
+
+//function to change price
 int changeprize(int prize)
 {
 	char pass[10],pak[10]="pass";
@@ -58,6 +106,10 @@ int changeprize(int prize)
 		printf("The entered password is wrong! ");
 	return prize;
 }
+
+
+
+//function to print the ticket details
 void reservation(int *array,int price,int slection)
 {          
 		int i,j;
@@ -99,16 +151,22 @@ void reservation(int *array,int price,int slection)
 			ticket3(j,person[count].name,id2,price);			
 		id2++;	
 }
+
+
+
+
+//function for the second page 
+
 int choice1(void)
 {
 	int choice;
-	printf("                 Simple Movie Ticket Booking System\n");
+	printf("               Movie Ticket Booking System\n");
 	printf(" ==================================================================\n");
-	printf("||             1- To edit price of ticket (only admin):           ||\n");
-	printf("||             2- To view reserved tickets (only admin):          ||\n");
-	printf("||             3- To puchase ticket:                              ||\n");
-	printf("||             4- To cancel the seat:                             ||\n");
-	printf("||             5- Exit system:                                    ||\n");
+	printf("||             1- To Book Tickets                                ||\n");
+	printf("||             2- To View Tickets                                ||\n");
+
+	printf("||             3- To Cancel Tickets                              ||\n");
+	printf("||             4- Exit system:                                   ||\n");
 	printf("||================================================================||\n");
 	printf("  Enter your choice: ");
 	scanf("%d",&choice);
@@ -133,6 +191,10 @@ void cancel(int *array)
 	  if (stop!=5)	
 	  		printf("Ticket ID number is incorrect please enter right one to cancel ticket: \n");
 }
+
+
+
+
 void ticket1(int choice,char name[10],int id2,int price)
 {
 		system("cls");
@@ -150,6 +212,8 @@ void ticket1(int choice,char name[10],int id2,int price)
         printf("\t============================================================\n");
         return;
 }
+
+
 void details(void)
 {
 	int i;
@@ -168,7 +232,10 @@ void details(void)
 		system("PAUSE");
 		system("CLS");
 	
-}             
+}
+
+
+
 int movie(void)
 {
 	int i;
@@ -210,6 +277,11 @@ int cmovie(void)
 	scanf("%d",&i);
 	return i;		
 }
+
+
+
+
+
 void ticket3(int choice,char name[10],int id2,int price)
 {
 		system("cls");
