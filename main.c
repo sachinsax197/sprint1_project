@@ -1,20 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "moviedetails.c"
-#include "Decleration.h"
-
+#include "Declaration.h"
 #include <strings.h>
 
 
-struct moviedetails person[300];
-int count = 0;
-int id2 = 1000;
 
 int main()
 {
 	system("clear");
+
 	USERS u;
-	char t[2] = {'\0'};
+//	char t[2] = {'\0'};
 	int n;
 	char ch;
 	int uid, flag = 0;
@@ -22,8 +19,8 @@ int main()
 	char name[20] = {'\0'};
 
 	FILE *ft;
-	int **seat, choice, price = 500, slection, i;
-	seat = (int **)calloc(101, sizeof(int *));
+//	int **seat, choice, price = 500, slection, i;
+//	seat = (int **)calloc(101, sizeof(int *));
 	for (i = 0; i < 3; i++)
 		*(seat + i) = (int *)calloc(101, sizeof(int));
 	int x, y;
@@ -34,7 +31,7 @@ int main()
 		switch (choice)
 		{
 		case 1:
-			printf("\nUser Login");
+			printf("\nUser Login\n");
 			ft = fopen("Users.dat", "r");
 			if (ft == NULL)
 			{
@@ -42,7 +39,7 @@ int main()
 				printf("\n First Create a Database\n");
 				break;
 			}
-			printf("Enter the User Id=\n");
+			printf("Enter the User Id=");
 			scanf("%d", &uid);
 			while (fread(&u, sizeof(u), 1, ft))
 				if (u.Uid == uid)
@@ -62,12 +59,12 @@ int main()
 			}
 			else
 			{
-				printf("\n User Id Not Found!!!.. Please Try Again\n")
+				printf("\n User Id Not Found!!!.. Please Try Again\n");
 			}
 
 			break;
 		case 2:
-			printf("\nRegisteration screen");
+			printf("\nRegisteration screen\n");
 			ft = fopen("Users.dat", "r");
 			if (ft == NULL)
 			{
@@ -76,7 +73,6 @@ int main()
 			}
 
 			ft = fopen("Users.dat", "a+");
-
 			setUsers(&u);
 			fwrite(&u, sizeof(u), 1, ft);
 			if (fwrite != 0)
@@ -114,7 +110,7 @@ int main()
 			}
 			else
 			{
-				printf("\n Admin Id Not Found!!!.. Please Try Again\n")
+				printf("\n Admin Id Not Found!!!.. Please Try Again\n");
 			}
 
 			break;
@@ -129,7 +125,7 @@ int main()
 		}
 	}
 
-	while (x != 5)
+/*	while (x != 5)
 	{
 		choice = choice1();
 		switch (choice)
@@ -156,6 +152,6 @@ int main()
 			printf("Choice not available\n");
 			break;
 		}
-	}
+	}*/
 	return 0;
 }

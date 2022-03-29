@@ -3,6 +3,9 @@
 #include <stdio.h>
 #define buflen 20
 
+int count=0;
+int id2=1000;
+
 struct Users
 {
 	int Uid;
@@ -12,6 +15,7 @@ struct Users
 
 typedef struct Users USERS;
 
+//struct moviedetails person[300];
 
 
 
@@ -89,7 +93,7 @@ int choice2(void)
 	scanf("%d",&choice);
 	return choice;
 }
-
+/*
 //function to change price
 int changeprize(int prize)
 {
@@ -303,5 +307,5 @@ void ticket3(int choice,char name[10],int id2,int price)
 
 
 
-
+*/
 #endif
