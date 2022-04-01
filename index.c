@@ -42,7 +42,7 @@ OpenLabel:
 			Write2db(e,fp);
 			
 			break;
-git 
+
 		case 2:
 			//e = temp;
 			NoOfElems = ReadFromDB(e,fp);

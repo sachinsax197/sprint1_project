@@ -128,7 +128,7 @@ void inputData(EMP *e,int NoOfElems)
 
 }
 
-void display(EMP *e,int NoOfElems)
+void show(EMP *e,int NoOfElems)
 {
 	int i;
 	printf("\n\n=====Display the Employee Details=====\n");
@@ -148,7 +148,7 @@ void display(EMP *e,int NoOfElems)
 	}
 }
 
-void Write2db(EMP *e,FILE *fp)
+void insertRecord(EMP *e,FILE *fp)
 {
 	int i;
 	printf("\nWriting records to DB......\n");
@@ -172,18 +172,7 @@ int ReadFromDB(EMP *e, FILE *fp)
 		display(&e1,1);
 		
 	}
-	/*fseek(fp,0,SEEK_SET);
-	for(i=0;;i++,e++, count++)
-	{
-		
-		//if(feof(fp))
-		//	break;
-		if(fread(&e,sizeof(EMP),1,fp) == 0)
-			break;
-		//display(e,1);
-			
-	}
-	printf("\ncount=%d",count);*/
+
 
 	return count;
 		
