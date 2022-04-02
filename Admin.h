@@ -80,7 +80,7 @@ void adminOptions(m1 *movie, int n)
     case 1:
         ft = fopen("Movies.dat", "a+");
         setMovie(&movie);
-        getMovie(movie);
+        getMovie(*movie);
         fwrite(&movie, sizeof(movie), 1, ft);
         if (fwrite != 0)
             printf("\n Movie Add Successfully\n");
@@ -114,7 +114,7 @@ void setMovie(m1 *movie)
     movie->movieId = (rand() % (10000 - 1 + 1)) + 1;
 }
 
-void getAdmin(m1 movie)
+void getMovie(m1 movie)
 {
     printf("\nMovie ID: ");
     printf("%s", movie.movieId);

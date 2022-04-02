@@ -157,7 +157,7 @@ int main(int argc, char const *argv[])
                     {
                         printf("\n Login Successfull\n");
                         n3 = choice3();
-                        adminOptions(&movie,n3);
+                        adminOptions(&movies,n3);
                         
                     }
                 }
