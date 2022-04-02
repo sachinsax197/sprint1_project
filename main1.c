@@ -2,19 +2,21 @@
 #include <string.h>
 #include <stdlib.h>
 #include "Functions.h"
+#include "Admin.h"
 
 int main(int argc, char const *argv[])
 {
     system("clear");
 
     USERS u;
+    admin a;
     char t[2] = {'\0'};
     int n, n1, n2,n3;
     char ch;
 
     char pass[20] = {'\0'};
     char name[20] = {'\0'};
-    char email[20] = {'\0'};
+    char email[30] = {'\0'};
 
     int uid = 0, flag = 0;
 
@@ -35,8 +37,6 @@ int main(int argc, char const *argv[])
             }
             printf("\nEnter the gmail id for search in the database=");
             scanf("%s", &email);
-            printf("\nEnter the password=");
-            scanf("%s", &pass);
             while (fread(&u, sizeof(u), 1, ft))
             {
                 if (strcmp(u.email,email)==0)
@@ -125,17 +125,26 @@ int main(int argc, char const *argv[])
 
 
         case 4:
-            ft = fopen("Admin.dat", "r");
+            ft = fopen("Admins.dat", "r");
             if (ft == NULL)
             {
                 printf("\n No Database Found\n");
                 printf("\n First Create a Database\n");
                 break;
             }
+             ft = fopen("Admins.dat", "a+");
+            setAdmin(&a);
+            getAdmin(a);
+            fwrite(&u, sizeof(u), 1, ft);
+            if (fwrite != 0)
+                printf("\n User Add Successfully\n");
+            else
+                printf("\nSomething Went Wrong\n");
+
+            printf("Login here=\n");
+
             printf("Enter the Admin Id for search in the database=\n");
             scanf("%d", &uid);
-            printf("\nEnter the password=");
-            scanf("%s", &pass);
             while (fread(&u, sizeof(u), 1, ft))
             {
                 if (u.Uid == uid)

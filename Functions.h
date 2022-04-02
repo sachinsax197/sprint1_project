@@ -6,7 +6,7 @@
 struct Users
 {
     int Uid;
-    char email[buflen];
+    char email[30];
     char Upasswd[buflen];
     char Uname[buflen];
     int acc_status;
@@ -46,6 +46,7 @@ int choice(void);
 int choice2(void);
 int choice2(void);
 void options(USERS *, int);
+int seatReservation(int *, int);
 //int checkUser(USERS, int, char[]);
 
 // choice for the first page
@@ -84,24 +85,7 @@ int choice2(void)
 }
 
 
-//choices after admin login
-int choice3(void)
-{
-    system("clear");
-    int choice;
-    printf("                      Movie Ticket Booking System\n");
-    printf(" ==================================================================\n");
-    printf("||                  1- Add Movie                                    ||\n");
-    printf("||                  2- Update Movie Details                         ||\n");
-    printf("||                  3- View All Users                               ||\n");
-    printf("||                  4- View Total Collection                        ||\n");
-    printf("||                  5- Exit system:                                 ||\n");
-    printf("||==================================================================||\n");
-    printf("  Enter your choice: ");
-    scanf("%d", &choice);
 
-    return choice;
-}
 
 
 
@@ -145,7 +129,7 @@ void options(USERS *U, int n)
          }
          else{
          j=(int *)malloc(sizeof(int)*n);
-         b=seatreservation(&j,n);
+         b=seatReservation(&j,n);
          ft = fopen("MovieReservationdetails.dat", "a+");
          details->movieId=i;
          details->userid=U->Uid;
