@@ -9,7 +9,7 @@ int main(int argc, char const *argv[])
 
     USERS u;
     char t[2] = {'\0'};
-    int n, n1, n2;
+    int n, n1, n2,n3;
     char ch;
 
     char pass[20] = {'\0'};
@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
                     {
                         printf("\n Login Successfull\n");
                         n1 = choice2();
-                        //options(u,n1);
+                        // options(u,n1);
                     }
                 }
             }
@@ -55,11 +55,9 @@ int main(int argc, char const *argv[])
             else if (flag == 1)
                 printf("\nUserid Found But Password Doesn't Match..!!\n");
 
-            // fclose(ft);
             break;
 
         case 2:
-
             ft = fopen("Users.dat", "r");
             if (ft == NULL)
             {
@@ -68,14 +66,13 @@ int main(int argc, char const *argv[])
             }
 
             ft = fopen("Users.dat", "a+");
-
             setUsers(&u);
             fwrite(&u, sizeof(u), 1, ft);
             if (fwrite != 0)
-                printf("\n Data Inserted Successfully\n");
+                printf("\n User Add Successfully\n");
             else
-                printf("\n Data not Inserted\n");
-            // fclose(ft);
+                printf("\nSomething Went Wrong\n");
+
             break;
 
         case 3:
@@ -86,15 +83,13 @@ int main(int argc, char const *argv[])
                 printf("\n First Create a Database\n");
                 break;
             }
-            printf("Enter the User Id for search in the database=\n");
+            printf("Enter the Admin Id for search in the database=\n");
             scanf("%d", &uid);
             printf("\nEnter the password=");
             scanf("%s", &pass);
             while (fread(&u, sizeof(u), 1, ft))
             {
-              
-                // flag = checkUser(u, uid, pass);
-                  if (u.Uid == uid)
+                if (u.Uid == uid)
                 {
                     flag = 1;
                     printf("\nEnter the Password=\n");
@@ -102,8 +97,8 @@ int main(int argc, char const *argv[])
                     if (strcmp(u.Upasswd, pass) == 0)
                     {
                         printf("\n Login Successfull\n");
-                        n1 = choice2();
-                        //options(u,n1);
+                        n3 = choice3();
+                        // options(u,n1);
                     }
                 }
             }

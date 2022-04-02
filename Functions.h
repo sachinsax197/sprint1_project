@@ -13,17 +13,24 @@ struct Users
 
 typedef struct Users USERS;
 
-// struct movieDetails
-// {
-// 	int Uid;
-// 	char Upasswd[buflen];
-// 	char Uname[buflen];
-//     int acc_status;
-// };
+struct movieDetails
+{
+	int movieId;
+	char movieName[buflen];
+	int moviePrice;
+    int movieStatus;
+    char movieTimings[buflen];
+};
+
+typedef struct movieDetails movie;
+
+
+
 
 void setUsers(USERS *);
 void getUsers(USERS);
 int choice(void);
+int choice2(void);
 int choice2(void);
 void options(USERS, int);
 //int checkUser(USERS, int, char[]);
@@ -36,6 +43,7 @@ int choice(void)
     printf(" ==================================================================\n");
     printf("||                  1- To User Login                                ||\n");
     printf("||                  2- To User Register                             ||\n");
+    printf("||                  3- Guest User                                   ||\n");
     printf("||                  3- To Admin Login                               ||\n");
     printf("||                  4- Exit system:                                 ||\n");
     printf("||==================================================================||\n");
@@ -59,6 +67,26 @@ int choice2(void)
     scanf("%d", &choice);
     return choice;
 }
+
+
+//choices after admin login
+int choice3(void)
+{
+    int choice;
+    printf("                      Movie Ticket Booking System\n");
+    printf(" ==================================================================\n");
+    printf("||                  1- Add Movie                                    ||\n");
+    printf("||                  2- Update Movie Details                         ||\n");
+    printf("||                  3- View All Users                               ||\n");
+    printf("||                  4- View Total Collection                        ||\n");
+    printf("||                  5- Exit system:                                 ||\n");
+    printf("||==================================================================||\n");
+    printf("  Enter your choice: ");
+    scanf("%d", &choice);
+    return choice;
+}
+
+
 
 void setUsers(USERS *U)
 {
