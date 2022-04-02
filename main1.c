@@ -10,6 +10,7 @@ int main(int argc, char const *argv[])
 
     USERS u;
     admin a;
+    m1 movies;
     char t[2] = {'\0'};
     int n, n1, n2,n3;
     char ch;
@@ -156,7 +157,8 @@ int main(int argc, char const *argv[])
                     {
                         printf("\n Login Successfull\n");
                         n3 = choice3();
-                        // options(u,n1);
+                        adminOptions(&movie,n3);
+                        
                     }
                 }
             }

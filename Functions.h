@@ -15,16 +15,9 @@ struct Users
 
 typedef struct Users USERS;
 
-struct movieDetails
-{
-	int movieId;
-	char movieName[buflen];
-	int moviePrice;
-    int movieStatus;
-    char movieTimings[buflen];
-};
 
-typedef struct movieDetails m1;
+
+
 
 struct movieReserationDetails
 {
@@ -107,8 +100,8 @@ void getUsers(USERS U)
     printf("%s", U.Uname);
     printf("\nUser ID: ");
     printf("%d", U.Uid);
-    printf("\nUser password: ");
-    printf("%s", U.Upasswd);
+    printf("\nUser email: ");
+    printf("%s", U.email);
     printf("\n\n");
 }
 
