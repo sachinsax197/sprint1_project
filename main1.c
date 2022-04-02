@@ -130,7 +130,7 @@ int main(int argc, char const *argv[])
             {
                 printf("\n No Database Found\n");
                 printf("\n First Create a Database\n");
-                break;
+                
             }
              ft = fopen("Admins.dat", "a+");
             setAdmin(&a);
