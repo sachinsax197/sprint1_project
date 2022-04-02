@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
                 printf("\n First Create a Database\n");
                 break;
             }
-            printf("Enter the gmail id for search in the database=\n");
+            printf("\nEnter the gmail id for search in the database=");
             scanf("%s", &email);
             printf("\nEnter the password=");
             scanf("%s", &pass);
@@ -48,7 +48,8 @@ int main(int argc, char const *argv[])
                     {
                         printf("\n Login Successfull\n");
                         n1 = choice2();
-                        // options(u,n1);
+                        options(&u,n1);
+                        printf("\n Process complete\n");
                     }
                 }
             }
@@ -58,6 +59,9 @@ int main(int argc, char const *argv[])
                 printf("\nUserid Found But Password Doesn't Match..!!\n");
 
             break;
+
+
+
 
         case 2:
             ft = fopen("Users.dat", "r");
@@ -76,6 +80,9 @@ int main(int argc, char const *argv[])
                 printf("\nSomething Went Wrong\n");
 
             break;
+
+
+
 
             case 3:
             ft = fopen("Admin.dat", "r");
@@ -115,6 +122,8 @@ int main(int argc, char const *argv[])
             break;
 
 
+
+
         case 4:
             ft = fopen("Admin.dat", "r");
             if (ft == NULL)
@@ -151,6 +160,8 @@ int main(int argc, char const *argv[])
 
             // fclose(ft);
             break;
+
+
 
         case 5:
             exit(EXIT_SUCCESS);
