@@ -130,8 +130,6 @@ int main(int argc, char const *argv[])
             {
                 printf("\n No Database Found\n");
                 printf("\n First Create a Database\n");
-                
-            }
              ft = fopen("Admins.dat", "a+");
             setAdmin(&a);
             getAdmin(a);
@@ -140,17 +138,19 @@ int main(int argc, char const *argv[])
                 printf("\n User Add Successfully\n");
             else
                 printf("\nSomething Went Wrong\n");
-
+            }
+            
+            else{
             printf("Login here=\n");
 
-            printf("Enter the Admin Id for search in the database=\n");
+            printf("Enter the Admin Id for search in the database=");
             scanf("%d", &uid);
-            while (fread(&u, sizeof(u), 1, ft))
+            while (fread(&a, sizeof(a), 1, ft))
             {
                 if (a.Uid == uid)
                 {
                     flag = 1;
-                    printf("\nEnter the Password=\n");
+                    printf("\nEnter the Password=");
                     scanf("%s", &pass);
                     if (strcmp(a.Upasswd, pass) == 0)
                     {
@@ -166,7 +166,7 @@ int main(int argc, char const *argv[])
                 printf("\nUserid Found But Password Doesn't Match..!!\n");
             else if (flag == 2)
                 printf("\nLogin Successfull");
-
+            }
             // fclose(ft);
             break;
 
