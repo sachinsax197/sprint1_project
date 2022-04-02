@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
 
             break;
 
-        case 3:
+            case 3:
             ft = fopen("Admin.dat", "r");
             if (ft == NULL)
             {
@@ -112,7 +112,45 @@ int main(int argc, char const *argv[])
             // fclose(ft);
             break;
 
+
         case 4:
+            ft = fopen("Admin.dat", "r");
+            if (ft == NULL)
+            {
+                printf("\n No Database Found\n");
+                printf("\n First Create a Database\n");
+                break;
+            }
+            printf("Enter the Admin Id for search in the database=\n");
+            scanf("%d", &uid);
+            printf("\nEnter the password=");
+            scanf("%s", &pass);
+            while (fread(&u, sizeof(u), 1, ft))
+            {
+                if (u.Uid == uid)
+                {
+                    flag = 1;
+                    printf("\nEnter the Password=\n");
+                    scanf("%s", &pass);
+                    if (strcmp(u.Upasswd, pass) == 0)
+                    {
+                        printf("\n Login Successfull\n");
+                        n3 = choice3();
+                        // options(u,n1);
+                    }
+                }
+            }
+            if (flag == 0)
+                printf("\n Userid doesnot found in the database\n");
+            else if (flag == 1)
+                printf("\nUserid Found But Password Doesn't Match..!!\n");
+            else if (flag == 2)
+                printf("\nLogin Successfull");
+
+            // fclose(ft);
+            break;
+
+        case 5:
             exit(EXIT_SUCCESS);
             break;
 

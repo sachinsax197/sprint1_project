@@ -6,6 +6,7 @@
 struct Users
 {
     int Uid;
+    char email[buflen];
     char Upasswd[buflen];
     char Uname[buflen];
     int acc_status;
@@ -22,7 +23,7 @@ struct movieDetails
     char movieTimings[buflen];
 };
 
-typedef struct movieDetails movie;
+typedef struct movieDetails m1;
 
 
 
@@ -38,14 +39,15 @@ void options(USERS, int);
 // choice for the first page
 int choice(void)
 {
+    system("clear");
     int choice;
     printf("                      Movie Ticket Booking System\n");
     printf(" ==================================================================\n");
     printf("||                  1- To User Login                                ||\n");
     printf("||                  2- To User Register                             ||\n");
     printf("||                  3- Guest User                                   ||\n");
-    printf("||                  3- To Admin Login                               ||\n");
-    printf("||                  4- Exit system:                                 ||\n");
+    printf("||                  4- To Admin Login                               ||\n");
+    printf("||                  5- Exit system:                                 ||\n");
     printf("||==================================================================||\n");
     printf("  Enter your choice: ");
     scanf("%d", &choice);
@@ -55,6 +57,7 @@ int choice(void)
 // choice after user login
 int choice2(void)
 {
+    system("clear");
     int choice;
     printf("               Movie Ticket Booking System\n");
     printf(" ==================================================================\n");
@@ -72,6 +75,7 @@ int choice2(void)
 //choices after admin login
 int choice3(void)
 {
+    system("clear");
     int choice;
     printf("                      Movie Ticket Booking System\n");
     printf(" ==================================================================\n");
@@ -83,6 +87,7 @@ int choice3(void)
     printf("||==================================================================||\n");
     printf("  Enter your choice: ");
     scanf("%d", &choice);
+
     return choice;
 }
 
@@ -93,10 +98,8 @@ void setUsers(USERS *U)
 
     printf("\nEnter User Name: ");
     scanf("%s", U->Uname);
-
-    // fflush(stdin);
-    printf("\nEnter User ID: ");
-    scanf("%d", &U->Uid);
+    printf("\nEnter the gmail id:");
+    scanf("%s",U->email);
     printf("\nEnter User password: ");
     scanf("%s", U->Upasswd);
 }
@@ -135,14 +138,14 @@ void options(USERS U, int n)
 int movie(void)
 {
     int i;
-    system("cls");
+    system("clear");
     printf("\t\t\twhich movie you want to see?\n");
     printf("\t\t\t----------------------------\n\n");
     printf("\t\t\tpress 1 for Avengers: EndGame\n\n");
     printf("\t\t\tpress 2 for Captain Marvel\n\n");
     printf("\t\t\tpress 3 for Spider-Man: Far From Home\n");
     scanf("%d", &i);
-    system("cls");
+    system("clear");
     return i;
 }
 
