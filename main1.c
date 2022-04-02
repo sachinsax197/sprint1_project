@@ -146,6 +146,7 @@ int main(int argc, char const *argv[])
 
             printf("Enter the Admin Id for search in the database=");
             scanf("%d", &uid);
+            fseek(ft,0,SEEK_SET);
             while (fread(&a, sizeof(a), 1, ft))
             {
                 if (a.Uid == uid)
