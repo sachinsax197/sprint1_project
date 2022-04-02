@@ -104,11 +104,13 @@ void setMovie(m1 *movie)
 {
     printf("\nEnter Movie Name: ");
     scanf("%s", movie->movieName);
+    fflush(stdin);
     printf("\nEnter the movie price:");
     scanf("%d", movie->moviePrice);
     printf("\nEnter the movie timing: ");
     scanf("%s", movie->movieTimings);
-    printf("\nEnter the movie timing: ");
+    fflush(stdin);
+    printf("\nEnter the movie status: ");
     scanf("%d", movie->movieStatus);
     
     movie->movieId = (rand() % (10000 - 1 + 1)) + 1;
