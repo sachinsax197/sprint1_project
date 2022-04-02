@@ -135,7 +135,7 @@ int main(int argc, char const *argv[])
              ft = fopen("Admins.dat", "a+");
             setAdmin(&a);
             getAdmin(a);
-            fwrite(&u, sizeof(u), 1, ft);
+            fwrite(&a, sizeof(a), 1, ft);
             if (fwrite != 0)
                 printf("\n User Add Successfully\n");
             else
@@ -147,12 +147,12 @@ int main(int argc, char const *argv[])
             scanf("%d", &uid);
             while (fread(&u, sizeof(u), 1, ft))
             {
-                if (u.Uid == uid)
+                if (a.Uid == uid)
                 {
                     flag = 1;
                     printf("\nEnter the Password=\n");
                     scanf("%s", &pass);
-                    if (strcmp(u.Upasswd, pass) == 0)
+                    if (strcmp(a.Upasswd, pass) == 0)
                     {
                         printf("\n Login Successfull\n");
                         n3 = choice3();

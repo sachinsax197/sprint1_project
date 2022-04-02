@@ -35,6 +35,8 @@ void getAdmin(admin U)
 {
     printf("\nUser Name: ");
     printf("%s", U.Uname);
+     printf("\nUser password: ");
+    printf("%s", U.email);
     printf("\nUser ID: ");
     printf("%d", U.Uid);
     printf("\nUser password: ");

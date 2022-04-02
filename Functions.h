@@ -1,6 +1,7 @@
 #ifndef USERS_H
 #define USERS_H
 #include <stdio.h>
+#include<stdlib.h>
 #define buflen 20
 
 struct Users
