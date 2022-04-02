@@ -14,6 +14,8 @@ int main(int argc, char const *argv[])
 
     char pass[20] = {'\0'};
     char name[20] = {'\0'};
+    char email[20] = {'\0'};
+
     int uid = 0, flag = 0;
 
     FILE *ft;
@@ -31,13 +33,13 @@ int main(int argc, char const *argv[])
                 printf("\n First Create a Database\n");
                 break;
             }
-            printf("Enter the User Id for search in the database=\n");
-            scanf("%d", &uid);
+            printf("Enter the gmail id for search in the database=\n");
+            scanf("%s", &email);
             printf("\nEnter the password=");
             scanf("%s", &pass);
             while (fread(&u, sizeof(u), 1, ft))
             {
-                if (u.Uid == uid)
+                if (strcmp(u.email,email)==0)
                 {
                     flag = 1;
                     printf("\nEnter the Password=\n");
