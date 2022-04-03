@@ -103,7 +103,7 @@ void adminOptions(m1 *movie,USERS U, int n)
         }
         else
         {
-            Printf("\nMovies Present in the Database\n");
+            printf("\nMovies Present in the Database\n");
             while (fread(&movie, sizeof(movie), 1, ft))
                 getMovie(*movie);
         }
@@ -181,7 +181,7 @@ void adminOptions(m1 *movie,USERS U, int n)
         }
         else
         {
-            Printf("\nAll Users Present in the Database\n");
+            printf("\nAll Users Present in the Database\n");
             while (fread(&U, sizeof(U), 1, ft))
                 getUsers(U);
         }
