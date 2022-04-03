@@ -27,7 +27,7 @@ typedef struct movieDetails m1;
 
 void setAdmin(admin *);
 void getAdmin(admin);
-void adminOptions(m1 *,USERS ,int);
+//void adminOptions(m1 *,USERS ,int);
 
 void setAdmin(admin *a)
 {
@@ -72,8 +72,8 @@ int choice3(void)
 
     return choice;
 }
-
-void adminOptions(m1 *movie,USERS U, int n)
+/*
+void adminOptions(m1 *movie,USERS , int n)
 {
     FILE *ft;
     int flag = 0;
@@ -192,7 +192,7 @@ void adminOptions(m1 *movie,USERS U, int n)
         exit(EXIT_SUCCESS);
         break;
     }
-}
+}*/
 
 void setMovie(m1 *movie)
 {

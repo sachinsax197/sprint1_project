@@ -40,7 +40,9 @@ int choice(void);
 int choice2(void);
 int choice2(void);
 void options(USERS *, int);
-int seatReservation(int *, int);
+void seatReservation(int *, int);
+int choice4(void);
+void guest(int n);
 //int checkUser(USERS, int, char[]);
 
 // choice for the first page
@@ -77,11 +79,6 @@ int choice2(void)
     scanf("%d", &choice);
     return choice;
 }
-
-
-
-
-
 
 void setUsers(USERS *U)
 {
@@ -123,7 +120,7 @@ void options(USERS *U, int n)
          }
          else{
          j=(int *)malloc(sizeof(int)*n);
-         b=seatReservation(&j,n);
+         seatReservation(&j,n);
          ft = fopen("MovieReservationdetails.dat", "a+");
          details->movieId=i;
          details->userid=U->Uid;
@@ -165,12 +162,12 @@ int movie(void)
 }
 
 
-int seatReservation(int *j, int n)
+void seatReservation(int *j, int n)
 {
     int i=1,seatno;
     printf("\n Please Select the Seat No.\n");
 
-    for(i=1;i<10;i++)
+    for(i=1;i<101;i++)
     {
         printf("%d\t",i);
         if(i%10==0)
@@ -181,9 +178,59 @@ int seatReservation(int *j, int n)
     for(i=0;i<n;i++){
     scanf("%d",(j+i));
     }
-    return j;
+    
 }
+int choice4(void)
+{
+			
+    int choice;
+    printf("                      Movie Ticket Booking System\n");
+    printf(" ==================================================================\n");
+    printf("||                  1- To User Login                                ||\n");
+	printf("||                  2- Exit system                                  ||\n");
+	printf("Enter your choice : ");
+	scanf("%d",&choice);
+	return choice;
+}	
+void guest(int n)
+{
+	
+    int i,a,*j,*b;
+    m *details;
+    FILE *ft;
+    switch (n)
+    {
+    case 1:
+         i = movie();
+         label1:
+         printf("\nHow many seats Would You like to book=");
+         scanf("%d",&a);
+         if(a>10){
+         printf("\n You are not allowed to book more than 10 tickets");
+         goto label1;
+         }
+         else{
+         j=(int *)malloc(sizeof(int)*n);
+         seatReservation(&j,n);
+         ft = fopen("MovieReservationdetails.dat", "a+");
+         details->movieId=i;
+       //  details->userid=U->Uid;
+         printf("Tickets Book Successfully");
+         }
 
+        break;
+	case 2:
+		
+      exit(EXIT_SUCCESS);
+
+        break;
+        default:
+        printf("\n Please Enter a valid Input");
+        break;
+	}
+}
+		
+	
 // int checkUser(USERS U, int id, char pass[])
 // {
 // 	int count=0;
