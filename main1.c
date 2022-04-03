@@ -11,8 +11,9 @@ int main(int argc, char const *argv[])
     USERS u;
     admin a;
     m1 movies;
+    m details;
     char t[2] = {'\0'};
-    int n, n1, n2,n3;
+    int n, n1, n2, n3;
     char ch;
 
     char pass[20] = {'\0'};
@@ -40,16 +41,17 @@ int main(int argc, char const *argv[])
             scanf("%s", &email);
             while (fread(&u, sizeof(u), 1, ft))
             {
-                if (strcmp(u.email,email)==0)
+                if (strcmp(u.email, email) == 0)
                 {
                     flag = 1;
                     printf("\nEnter the Password=\n");
                     scanf("%s", &pass);
                     if (strcmp(u.Upasswd, pass) == 0)
                     {
+                        flag=2;
                         printf("\n Login Successfull\n");
                         n1 = choice2();
-                        options(&u,n1);
+                        options(&u, n1);
                         printf("\n Process complete\n");
                     }
                 }
@@ -61,9 +63,6 @@ int main(int argc, char const *argv[])
 
             break;
 
-
-
-
         case 2:
             ft = fopen("Users.dat", "r");
             if (ft == NULL)
@@ -72,7 +71,7 @@ int main(int argc, char const *argv[])
                 printf("\nCreating User Record File\n");
             }
 
-            ft = fopen("Users.dat", "a+");
+            ft = fopen("Users.dat", "a");
             setUsers(&u);
             fwrite(&u, sizeof(u), 1, ft);
             if (fwrite != 0)
@@ -82,10 +81,7 @@ int main(int argc, char const *argv[])
 
             break;
 
-
-
-
-            case 3:
+        case 3:
             ft = fopen("Admin.dat", "r");
             if (ft == NULL)
             {
@@ -122,58 +118,53 @@ int main(int argc, char const *argv[])
             // fclose(ft);
             break;
 
-
-
-
         case 4:
             ft = fopen("Admins.dat", "r");
             if (ft == NULL)
             {
                 printf("\n No Database Found\n");
                 printf("\n First Create a Database\n");
-             ft = fopen("Admins.dat", "a+");
-            setAdmin(&a);
-            getAdmin(a);
-            fwrite(&a, sizeof(a), 1, ft);
-            if (fwrite != 0)
-                printf("\n User Add Successfully\n");
-            else
-                printf("\nSomething Went Wrong\n");
+                ft = fopen("Admins.dat", "w");
+                setAdmin(&a);
+                getAdmin(a);
+                fwrite(&a, sizeof(a), 1, ft);
+                if (fwrite != 0)
+                    printf("\n User Add Successfully\n");
+                else
+                    printf("\nSomething Went Wrong\n");
             }
-            
-            else{
-            printf("Login here=\n");
 
-            printf("Enter the Admin Id for search in the database=");
-            scanf("%d", &uid);
-            fseek(ft,0,SEEK_SET);
-            while (fread(&a, sizeof(a), 1, ft))
+            else
             {
-                if (a.Uid == uid)
+                printf("Login here=\n");
+
+                printf("Enter the Admin Id for search in the database=");
+                scanf("%d", &uid);
+                fseek(ft, 0, SEEK_SET);
+                while (fread(&a, sizeof(a), 1, ft))
                 {
-                    flag = 1;
-                    printf("\nEnter the Password=");
-                    scanf("%s", &pass);
-                    if (strcmp(a.Upasswd, pass) == 0)
+                    if (a.Uid == uid)
                     {
-                        printf("\n Login Successfull\n");
-                        n3 = choice3();
-                        adminOptions(&movies,u,n3);
-                        printf("\nProcess Complete\n");
-                        
+                        flag = 1;
+                        printf("\nEnter the Password=");
+                        scanf("%s", &pass);
+                        if (strcmp(a.Upasswd, pass) == 0)
+                        {
+                            flag=2;
+                            printf("\n Login Successfull\n");
+                            n3 = choice3();
+                            adminOptions(&movies, u, n3);
+                            printf("\nProcess Complete\n");
+                        }
                     }
                 }
+                if (flag == 0)
+                    printf("\n Admin id doesnot found in the database\n");
+                else if (flag == 1)
+                    printf("\nUserid Found But Password Doesn't Match..!!\n");
             }
-            if (flag == 0)
-                printf("\n Userid doesnot found in the database\n");
-            else if (flag == 1)
-                printf("\nUserid Found But Password Doesn't Match..!!\n");
-          
-            }
-        
+
             break;
-
-
 
         case 5:
             exit(EXIT_SUCCESS);

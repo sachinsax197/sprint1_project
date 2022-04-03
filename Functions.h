@@ -1,7 +1,7 @@
 #ifndef USERS_H
 #define USERS_H
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 #define buflen 20
 
 struct Users
@@ -15,24 +15,17 @@ struct Users
 
 typedef struct Users USERS;
 
-
-
-
-
 struct movieReserationDetails
 {
-	int movieId;
+    int movieId;
     int userid;
-	int reservedSeats[10];
-	int moviePrice;
+    int reservedSeats[10];
+    int moviePrice;
     int ticketstatus;
     int totalvalue;
 };
 
 typedef struct movieReserationDetails m;
-
-
-
 
 void setUsers(USERS *);
 void getUsers(USERS);
@@ -40,8 +33,8 @@ int choice(void);
 int choice2(void);
 int choice2(void);
 void options(USERS *, int);
-int seatReservation(int *, int);
-//int checkUser(USERS, int, char[]);
+void seatReservation(int *, int);
+// int checkUser(USERS, int, char[]);
 
 // choice for the first page
 int choice(void)
@@ -78,20 +71,15 @@ int choice2(void)
     return choice;
 }
 
-
-
-
-
-
 void setUsers(USERS *U)
 {
     printf("\nEnter User Name: ");
     scanf("%s", U->Uname);
     printf("\nEnter the gmail id:");
-    scanf("%s",U->email);
+    scanf("%s", U->email);
     printf("\nEnter User password: ");
     scanf("%s", U->Upasswd);
-    U->Uid=(rand() % (10000 - 1 + 1)) + 1;
+    U->Uid = (rand() % (10000 - 1 + 1)) + 1;
 }
 
 void getUsers(USERS U)
@@ -107,47 +95,54 @@ void getUsers(USERS U)
 
 void options(USERS *U, int n)
 {
-    int i,a,*j,*b;
+    int i, a, *j, *b;
     m *details;
     FILE *ft;
     switch (n)
     {
     case 1:
-         i = movie();
-         label1:
-         printf("\nHow many seats Would You like to book=");
-         scanf("%d",&a);
-         if(a>10){
-         printf("\n You are not allowed to book more than 10 tickets");
-         goto label1;
-         }
-         else{
-         j=(int *)malloc(sizeof(int)*n);
-         b=seatReservation(&j,n);
-         ft = fopen("MovieReservationdetails.dat", "a+");
-         details->movieId=i;
-         details->userid=U->Uid;
-         printf("Tickets Book Successfully");
-         }
+        i = movie();
+    label1:
+        printf("\nHow many seats Would You like to book=");
+        scanf("%d", &a);
+        if (a > 10)
+        {
+            printf("\nYou are not allowed to book more than 10 tickets\n");
+            goto label1;
+        }
+        else
+        {
+            j = (int *)malloc(sizeof(int) * n);
+            seatReservation(&j, n);
+            ft = fopen("MovieReservationdetails.dat", "a+");
+            details->movieId = i;
+            details->userid = U->Uid;
+            details->ticketstatus = 1;
+            for(i=0;i<n;i++)
+            details->reservedSeats[i]=*(j+i);
+            fwrite(&details, sizeof(details), 1, ft);
+            if (fwrite != 0)
+            printf("Tickets Book Successfully");
+             else
+                printf("\nSomething Went Wrong\n");
+        }
 
         break;
     case 2:
-    printf("Work on progress");
+        printf("Work on progress");
         break;
     case 3:
-    printf("Work on progress");
+        printf("Work on progress");
 
         break;
     case 4:
-      exit(EXIT_SUCCESS);
+        exit(EXIT_SUCCESS);
 
         break;
-        default:
+    default:
         printf("\n Please Enter a valid Input");
         break;
-            
-            }
-
+    }
 }
 
 int movie(void)
@@ -164,24 +159,23 @@ int movie(void)
     return i;
 }
 
-
-int seatReservation(int *j, int n)
+void seatReservation(int *j, int n)
 {
-    int i=1,seatno;
+    int i = 1, seatno;
     printf("\n Please Select the Seat No.\n");
 
-    for(i=1;i<10;i++)
+    for (i = 1; i <= 100; i++)
     {
-        printf("%d\t",i);
-        if(i%10==0)
-        printf("\n\n");
-
+        printf("%d\t", i);
+        if (i % 10 == 0)
+            printf("\n\n");
     }
     printf("\nEnter Your Choice=");
-    for(i=0;i<n;i++){
-    scanf("%d",(j+i));
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", (j + i));
     }
-    return j;
+    return;
 }
 
 // int checkUser(USERS U, int id, char pass[])
