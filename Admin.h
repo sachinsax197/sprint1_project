@@ -27,7 +27,7 @@ typedef struct movieDetails m1;
 
 void setAdmin(admin *);
 void getAdmin(admin);
-void adminOptions(m1 *, int);
+void adminOptions(m1 *,USERS ,int);
 
 void setAdmin(admin *a)
 {
@@ -61,10 +61,11 @@ int choice3(void)
     printf("                      Movie Ticket Booking System\n");
     printf(" ==================================================================\n");
     printf("||                  1- Add Movie                                    ||\n");
-    printf("||                  2- Update Movie Details                         ||\n");
-    printf("||                  3- View All Users                               ||\n");
-    printf("||                  4- View Total Collection                        ||\n");
-    printf("||                  5- Exit system:                                 ||\n");
+    printf("||                  2- View All Movie's List                        ||\n");
+    printf("||                  3- Update Movie Details                         ||\n");
+    printf("||                  4- View All Users                               ||\n");
+    printf("||                  5- View Total Collection                        ||\n");
+    printf("||                  6- Exit system:                                 ||\n");
     printf("||==================================================================||\n");
     printf("  Enter your choice: ");
     scanf("%d", &choice);
@@ -72,9 +73,13 @@ int choice3(void)
     return choice;
 }
 
-void adminOptions(m1 *movie, int n)
+void adminOptions(m1 *movie,USERS U, int n)
 {
     FILE *ft;
+    int flag = 0;
+    int mId, k;
+    int price, status;
+    char timing[20] = {'\0'};
     switch (n)
     {
     case 1:
@@ -89,16 +94,105 @@ void adminOptions(m1 *movie, int n)
 
         break;
     case 2:
+        ft = fopen("Movies.dat", "r");
+        if (ft == NULL)
+        {
+            printf("\n No Database Found\n");
+            printf("\n First Create a Database\n");
+            break;
+        }
+        else
+        {
+            Printf("\nMovies Present in the Database\n");
+            while (fread(&movie, sizeof(movie), 1, ft))
+                getMovie(*movie);
+        }
+        
         break;
     case 3:
+
+        ft = fopen("Movies.dat", "r+");
+        if (ft == NULL)
+        {
+            printf("\n No Database Found\n");
+            printf("\n First Create a Database\n");
+            exit(EXIT_FAILURE);
+        }
+        printf("Enter the User Id for search in the database=\n");
+        scanf("%d", &mId);
+        while (fread(&movie, sizeof(movie), 1, ft))
+            if (movie->movieId == mId)
+            {
+                flag = 1;
+                break;
+            }
+
+        if (flag != 1)
+            printf("\n MovieID doesnot found in the database\n");
+        else
+        {
+            printf("\nMovie Found In the Database\n");
+            printf("Current Details of the Movie=\n");
+            getMovie(*movie);
+            // break;
+            printf("\nWhat do want to Update in the Movie..... Please Select Option:\n");
+            printf("\n1-Update Price");
+            printf("\n2-Update Status");
+            printf("\n3-Update Timing");
+            scanf("%d", &k);
+            switch (k)
+            {
+            case 1:
+                printf("\nEnter the new price of the movie:- ");
+                scanf("%d", &price);
+                movie->moviePrice = price;
+                break;
+
+            case 2:
+                printf("\nEnter the status of the movie:- ");
+                scanf("%d", &status);
+                movie->movieStatus = status;
+                break;
+
+            case 3:
+                printf("\nEnter the new timings of the movie:- ");
+                scanf("%s", timing);
+                strcpy(movie->movieTimings, timing);
+                break;
+
+            default:
+                break;
+            }
+
+            fseek(ft, sizeof(movie) * (-1), SEEK_CUR);
+            fwrite(&movie, sizeof(movie), 1, ft);
+            printf("\n Movie Details Updated Successfully\n");
+            getMovie(*movie);
+        }
+
         break;
     case 4:
+     ft = fopen("Users.dat", "r");
+        if (ft == NULL)
+        {
+            printf("\n No Database Found\n");
+            printf("\n First Create a Database\n");
+            break;
+        }
+        else
+        {
+            Printf("\nAll Users Present in the Database\n");
+            while (fread(&U, sizeof(U), 1, ft))
+                getUsers(U);
+        }
         break;
     case 5:
         break;
+    case 6:
+        exit(EXIT_SUCCESS);
+        break;
     }
 }
-
 
 void setMovie(m1 *movie)
 {
@@ -112,7 +206,7 @@ void setMovie(m1 *movie)
     fflush(stdin);
     printf("\nEnter the movie status: ");
     scanf("%d", movie->movieStatus);
-    
+
     movie->movieId = (rand() % (10000 - 1 + 1)) + 1;
 }
 

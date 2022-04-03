@@ -158,7 +158,8 @@ int main(int argc, char const *argv[])
                     {
                         printf("\n Login Successfull\n");
                         n3 = choice3();
-                        adminOptions(&movies,n3);
+                        adminOptions(&movies,u,n3);
+                        printf("\nProcess Complete\n");
                         
                     }
                 }
@@ -167,10 +168,9 @@ int main(int argc, char const *argv[])
                 printf("\n Userid doesnot found in the database\n");
             else if (flag == 1)
                 printf("\nUserid Found But Password Doesn't Match..!!\n");
-            else if (flag == 2)
-                printf("\nLogin Successfull");
+          
             }
-            // fclose(ft);
+        
             break;
 
 
