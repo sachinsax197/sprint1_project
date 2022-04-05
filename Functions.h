@@ -190,20 +190,21 @@ int movie(void)
     int i;
     system("clear");
    m1 movie;
-    ft = fopen("Users.dat", "r");
+   FILE *ft;
+    ft = fopen("MovieReservationdetails.dat", "r");
         if (ft == NULL)
         {
-            printf("\n No Database Found\n");
-            printf("\n First Create a Database\n");
+            printf("\n No Movie Found\n");
+            //printf("\n First Create a Database\n");
             break;
         }
         else
         {
-            printf("\nAll Users Present in the Database\n");
-            while (fread(&U, sizeof(U), 1, ft))
-                getUsers(U);
+            printf("\nPlease select a movie\n");
+            while (fread(&movie, sizeof(movie), 1, ft))
+                getMovie(movie);
         }
-        break;
+       
     return i;
 }
 
@@ -270,10 +271,10 @@ void guest(int n)
         else
         {           
             seatReservation(j, a);
-            printf("\nheelo");
+           // printf("\nheelo");
             ft = fopen("MovieReservationdetails.dat", "a+");
             details.movieId = mId;
-            details.userid = U->Uid;
+            //details.userid = U->Uid;
             details.ticketstatus = 1;
             for(i=0;i<n;i++)
             details.reservedSeats[i]=j[i];
