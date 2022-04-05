@@ -34,7 +34,7 @@ int choice(void);
 int choice2(void);
 int choice2(void);
 void options(USERS *, int);
-void seatReservation(int **, int);
+void seatReservation(int [], int);
 int choice4(void);
 void guest(int n);
 void welcomeScreen(void);
@@ -125,13 +125,15 @@ void getUsers(USERS U)
 
 void options(USERS *U, int n)
 {
-    int i, a,**j, *b;
-    m *details;
+    int mId, a;
+    int i;
+    int j[10];
+    m details;
     FILE *ft;
     switch (n)
     {
     case 1:
-        i = movie();
+        mId = movie();
     label1:
         printf("\nHow many seats Would You like to book=");
         scanf("%d", &a);
@@ -141,15 +143,15 @@ void options(USERS *U, int n)
             goto label1;
         }
         else
-        {
-            j = (int *)malloc(sizeof(int) * n);
-            seatReservation(j, n);
-            ft = fopen("MovieReservationdetails.dat", "a");
-            details->movieId = i;
-            details->userid = U->Uid;
-            details->ticketstatus = 1;
+        {           
+            seatReservation(j, a);
+            printf("\nheelo");
+            ft = fopen("MovieReservationdetails.dat", "a+");
+            details.movieId = mId;
+            details.userid = U->Uid;
+            details.ticketstatus = 1;
             for(i=0;i<n;i++)
-            details->reservedSeats[i]=**(j+i);
+            details.reservedSeats[i]=j[i];
             fwrite(&details, sizeof(details), 1, ft);
             if (fwrite != 0)
             printf("Tickets Book Successfully");
@@ -189,7 +191,7 @@ int movie(void)
     return i;
 }
 
-void seatReservation(int **j, int n)
+void seatReservation(int j[], int n)
 {
     int i = 1, seatno;
     printf("\n==============================================================================\n");
@@ -199,7 +201,7 @@ void seatReservation(int **j, int n)
     printf("\n\n\n");
 
 
-    for (i = 1; i <= 100; i++)
+    for (i = 1; i <= 60; i++)
     {
         printf("%d\t", i);
         if (i % 10 == 0)
@@ -209,7 +211,7 @@ void seatReservation(int **j, int n)
     printf("\nEnter Your Choice=");
     for (i = 0; i < n; i++)
     {
-        scanf("%d",*(j + i));
+        scanf("%d",&j);
     }
    
 }
@@ -232,28 +234,39 @@ int choice4(void)
 void guest(int n)
 {
 
-    int i,a,*j,*b;
-    m *details;
+     int mId, a;
+    int i;
+    int j[10];
+    m details;
     FILE *ft;
     switch (n)
     {
     case 1:
-         i = movie();
-         label1:
-         printf("\nHow many seats Would You like to book=");
-         scanf("%d",&a);
-         if(a>10){
-         printf("\n You are not allowed to book more than 10 tickets");
-         goto label1;
-         }
-         else{
-         j=(int *)malloc(sizeof(int)*n);
-         seatReservation(&j,n);
-         ft = fopen("MovieReservationdetails.dat", "a+");
-         details->movieId=i;
-       //  details->userid=U->Uid;
-         printf("Tickets Book Successfully");
-         }
+           mId = movie();
+    label1:
+        printf("\nHow many seats Would You like to book=");
+        scanf("%d", &a);
+        if (a > 10)
+        {
+            printf("\nYou are not allowed to book more than 10 tickets\n");
+            goto label1;
+        }
+        else
+        {           
+            seatReservation(j, a);
+            printf("\nheelo");
+            ft = fopen("MovieReservationdetails.dat", "a+");
+            details.movieId = mId;
+            details.userid = U->Uid;
+            details.ticketstatus = 1;
+            for(i=0;i<n;i++)
+            details.reservedSeats[i]=j[i];
+            fwrite(&details, sizeof(details), 1, ft);
+            if (fwrite != 0)
+            printf("Tickets Book Successfully");
+             else
+                printf("\nSomething Went Wrong\n");
+        }
 
         break;
 	case 2:

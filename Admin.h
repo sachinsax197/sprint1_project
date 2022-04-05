@@ -27,7 +27,7 @@ typedef struct movieDetails m1;
 
 void setAdmin(admin *);
 void getAdmin(admin);
-void adminOptions(m1 *,USERS ,int);
+void adminOptions(m1,USERS ,int);
 void setMovie(m1 *);
 void getMovie(m1);
 
@@ -75,7 +75,7 @@ int choice3(void)
     return choice;
 }
 
-void adminOptions(m1 *movie,USERS U, int n)
+void adminOptions(m1 movie,USERS U, int n)
 {
     FILE *ft;
     int flag = 0;
@@ -86,9 +86,9 @@ void adminOptions(m1 *movie,USERS U, int n)
     {
     case 1:
         ft = fopen("Movies.dat", "a+");
-        setMovie(movie);
-	printf("\nHey");
-        getMovie(*movie);
+        setMovie(&movie);
+	//printf("\nHey");
+        getMovie(movie);
         fwrite(&movie, sizeof(movie), 1, ft);
         if (fwrite != 0)
             printf("\n Movie Add Successfully\n");
@@ -108,7 +108,7 @@ void adminOptions(m1 *movie,USERS U, int n)
         {
             printf("\nMovies Present in the Database\n");
             while (fread(&movie, sizeof(movie), 0, ft))
-                getMovie(*movie);
+                getMovie(movie);
         }
         
         break;
@@ -136,7 +136,7 @@ void adminOptions(m1 *movie,USERS U, int n)
         {
             printf("\nMovie Found In the Database\n");
             printf("Current Details of the Movie=\n");
-            getMovie(*movie);
+            getMovie(movie);
             // break;
             printf("\nWhat do want to Update in the Movie..... Please Select Option:\n");
             printf("\n1-Update Price");
@@ -170,7 +170,7 @@ void adminOptions(m1 *movie,USERS U, int n)
             fseek(ft, sizeof(movie) * (-1), SEEK_CUR);
             fwrite(&movie, sizeof(movie), 1, ft);
             printf("\n Movie Details Updated Successfully\n");
-            getMovie(*movie);
+            getMovie(movie);
         }
 
         break;

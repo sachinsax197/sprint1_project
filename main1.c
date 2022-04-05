@@ -132,7 +132,7 @@ int main(int argc, char const *argv[])
                             flag=2;
                             printf("\n Login Successfull\n");
                             n3 = choice3();
-                            adminOptions(&movies, u, n3);
+                            adminOptions(movies, u, n3);
                             printf("\nProcess Complete\n");
                         }
                     }
