@@ -1,5 +1,5 @@
-#ifndef USER_H
-#define USER_H
+#ifndef FUNCTION_H
+#define FUNCTION_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,7 +15,6 @@ struct Users
     int acc_status;
 };
 typedef struct Users USERS;
-
 
 
 
