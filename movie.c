@@ -1,8 +1,28 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#define buflen 30
+
+struct Users
+{
+    int Uid;
+    char email[30];
+    char Upasswd[buflen];
+    char Uname[buflen];
+    int acc_status;
+};
+typedef struct Users USERS;
 
 
+struct Admin
+{
+    int Uid;
+    char email[buflen];
+    char Upasswd[buflen];
+    char Uname[buflen];
+};
+
+typedef struct Admin admin;
 
 char r;
 void login(){
@@ -57,7 +77,33 @@ void find();
 void book_ticket();
 void old_records();
 void welcomeScreen(void);
+int choice(void);
+int choice2(void);
+void setAdmin(admin *);
+void getAdmin(admin);
+void setUsers(USERS *);
+void getUsers(USERS);
+void options(int);
+
 void main(){
+
+     system("clear");
+
+    USERS u;
+    admin a;
+   
+    char t[2] = {'\0'};
+    int n, n1, n2, n3;
+    char ch;
+
+    char pass[20] = {'\0'};
+    char name[20] = {'\0'};
+    char email[30] = {'\0'};
+
+    int uid = 0, flag = 0;
+
+    FILE *ft;
+
     welcomeScreen();
     
  do
@@ -87,7 +133,7 @@ void main(){
                         flag=2;
                         printf("\n Login Successfull\n");
                         n1 = choice2();
-                        options(&u, n1);
+                        options(n1);
                         printf("\n Process complete\n");
                     }
                 }
@@ -167,7 +213,7 @@ void main(){
                             flag=2;
                             printf("\n Login Successfull\n");
                             n3 = choice3();
-                            adminOptions(movies, u, n3);
+                            adminOptions(n3);
                             printf("\nProcess Complete\n");
                         }
                     }
@@ -196,7 +242,12 @@ void main(){
     } while (ch == 'y');
 
     fclose(ft);
-    printf("\nEnd of Program\n");
+   
+
+
+
+
+	//login();
 
 
 
@@ -206,11 +257,6 @@ void main(){
 
 
 
-
-
-
-
-	login();
 
 
 
@@ -244,6 +290,74 @@ void main(){
 	    		default: printf("Enter a valid option.");
 	   	}
 	 }
+}
+
+
+void adminOptions(int n)
+{
+   
+    char ch;
+    do {
+    switch (n)
+    {
+    case 1:
+       insert_details();
+        break;
+    case 2:
+       view_All();
+        
+        break;
+    case 3:
+old_records();
+
+        break;
+   
+    case 4:
+        exit(EXIT_SUCCESS);
+        break;
+
+        default:
+        printf("\nEnter a valid option\n");
+        break;
+    }
+    printf("\nPlease enter a correct choice....\n");
+    getc(stdin);
+    scanf("%c",&ch);
+    }while(ch=='y');
+}
+
+
+
+
+
+
+
+
+void options(int n)
+{
+   
+    char ch; 
+    do {
+    switch (n)
+    {
+    case 1:
+         book_ticket();
+         break;
+    case 2:
+        find();
+        break;
+    case 3:
+        exit(EXIT_SUCCESS);
+        break;
+    default:
+        printf("\n Please Enter a valid Input");
+        break;
+    }
+     printf("\n Do you want to continue.....\n");
+     getc(stdin);
+     scanf("%c",&ch);
+    }while(ch=='y');
+
 }
 
 void welcomeScreen()
@@ -282,7 +396,87 @@ int choice(void)
 }
 
 
+int choice(void)
+{
+    system("clear");
+    int choice;
+    printf(" ********************************************************************\n");
+    printf("                      Movie Ticket Booking System\n");
+    printf(" ====================================================================\n");
+    printf("||                  1- To User Login                                ||\n");
+    printf("||                  2- To User Register                             ||\n");
+    printf("||                  3- Guest User                                   ||\n");
+    printf("||                  4- To Admin Login                               ||\n");
+    printf("||                  5- Exit system:                                 ||\n");
+    printf("||==================================================================||\n");
+    printf(" ********************************************************************\n");
 
+    printf("  Enter your choice: ");
+    scanf("%d", &choice);
+    return choice;
+}
+
+// choice after user login
+int choice2(void)
+{
+    system("clear");
+    int choice;
+    printf(" ==================================================================\n");
+    printf("               Movie Ticket Booking System\n");
+    printf(" ==================================================================\n");
+    printf("||             1- To Book Tickets                                ||\n");
+    printf("||             2- To View Tickets                                ||\n");
+    printf("||             3- To Cancel Tickets                              ||\n");
+    printf("||             4- Exit system:                                   ||\n");
+    printf("||================================================================||\n");
+    printf("  Enter your choice: ");
+    scanf("%d", &choice);
+    return choice;
+}
+
+int choice3(void)
+{
+    system("clear");
+    int choice;
+    printf("                      Movie Ticket Booking System\n");
+    printf(" ==================================================================\n");
+    printf("||                  1- Add Movie                                    ||\n");
+    printf("||                  2- View All Movie's List                        ||\n");
+    printf("||                  3- Update Movie Details                         ||\n");
+    printf("||                  4- View All Users                               ||\n");
+    printf("||                  5- View Total Collection                        ||\n");
+    printf("||                  6- Exit system:                                 ||\n");
+    printf("||==================================================================||\n");
+    printf("  Enter your choice: ");
+    scanf("%d", &choice);
+
+    return choice;
+}
+
+
+
+
+void setUsers(USERS *U)
+{
+    printf("\nEnter User Name: ");
+    scanf("%s", U->Uname);
+    printf("\nEnter the gmail id:");
+    scanf("%s", U->email);
+    printf("\nEnter User password: ");
+    scanf("%s", U->Upasswd);
+    U->Uid = (rand() % (10000 - 1 + 1)) + 1;
+}
+
+void getUsers(USERS U)
+{
+    printf("\nUser Name: ");
+    printf("%s", U.Uname);
+    printf("\nUser ID: ");
+    printf("%d", U.Uid);
+    printf("\nUser email: ");
+    printf("%s", U.email);
+    printf("\n\n");
+}
 
 
 void insert_details(){
