@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Functions.h"
-
+#define buflen 30
 
 struct Admin
 {
@@ -30,6 +30,35 @@ void getAdmin(admin);
 void adminOptions(m1,USERS ,int);
 void setMovie(m1 *);
 void getMovie(m1);
+
+int movie(void)
+{
+    m1 movie;
+    int i;
+    system("clear");
+   FILE *ft;
+    ft = fopen("MovieReservationdetails.dat", "r");
+        if (ft == NULL)
+        {
+            printf("\n No Movie Found\n");
+            //printf("\n First Create a Database\n");
+            //break;
+            exit(EXIT_FAILURE);
+        }
+        else
+        {
+            printf("\nPlease select a movie\n");
+            while (fread(&movie, sizeof(movie), 1, ft))
+                getMovie(movie);
+        }
+       
+    return i;
+}
+
+
+
+
+
 
 void setAdmin(admin *a)
 {
@@ -169,7 +198,7 @@ void adminOptions(m1 movie,USERS U, int n)
                 break;
             }
 
-            fseek(ft, sizeof(movie) * (-1), SEEK_CUR);
+            //fseek(ft, sizeof(movie) * (-1), SEEK_CUR);
             fwrite(&movie, sizeof(movie), 1, ft);
             printf("\n Movie Details Updated Successfully\n");
             getMovie(movie);

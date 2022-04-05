@@ -1,10 +1,10 @@
-#ifndef USERS_H
-#define USERS_H
+#ifndef USER_H
+#define USER_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "Admin.h"
-#define buflen 20
+#define buflen 30
 
 struct Users
 {
@@ -16,6 +16,9 @@ struct Users
 };
 
 typedef struct Users USERS;
+
+
+
 
 struct movieReserationDetails
 {
@@ -49,17 +52,14 @@ void welcomeScreen()
     printf(" ******************************************************************\n");
     printf(" ==================================================================\n");
     printf(" ==================================================================\n");
-    printf("                              WELCOME TO \n");
-    printf("                      MOVIE TICKET BOOKING SYSTEM\n");
+    printf("                              WELCOME TO                           \n");
+    printf("                      MOVIE TICKET BOOKING SYSTEM                  \n");
     printf(" ==================================================================\n");
     printf(" ==================================================================\n");
     printf(" ******************************************************************\n");
     sleep(2);
        
 }
-
-
-
 
 
 
@@ -148,7 +148,7 @@ void options(USERS *U, int n)
         else
         {           
             seatReservation(j, a);
-            printf("\nheelo");
+            //printf("\nheelo");
             ft = fopen("MovieReservationdetails.dat", "a+");
             details.movieId = mId;
             details.userid = U->Uid;
@@ -185,28 +185,7 @@ void options(USERS *U, int n)
 
 }
 
-int movie(void)
-{
-    int i;
-    system("clear");
-   m1 movie;
-   FILE *ft;
-    ft = fopen("MovieReservationdetails.dat", "r");
-        if (ft == NULL)
-        {
-            printf("\n No Movie Found\n");
-            //printf("\n First Create a Database\n");
-            break;
-        }
-        else
-        {
-            printf("\nPlease select a movie\n");
-            while (fread(&movie, sizeof(movie), 1, ft))
-                getMovie(movie);
-        }
-       
-    return i;
-}
+
 
 void seatReservation(int j[], int n)
 {
