@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Functions.h"
-
+#define buflen 30
 
 struct Admin
 {
@@ -30,6 +30,35 @@ void getAdmin(admin);
 void adminOptions(m1,USERS ,int);
 void setMovie(m1 *);
 void getMovie(m1);
+
+int movie(void)
+{
+    m1 movie;
+    int i;
+    system("clear");
+   FILE *ft;
+    ft = fopen("MovieReservationdetails.dat", "r");
+        if (ft == NULL)
+        {
+            printf("\n No Movie Found\n");
+            //printf("\n First Create a Database\n");
+            //break;
+            exit(EXIT_FAILURE);
+        }
+        else
+        {
+            printf("\nPlease select a movie\n");
+            while (fread(&movie, sizeof(movie), 1, ft))
+                getMovie(movie);
+        }
+       
+    return i;
+}
+
+
+
+
+
 
 void setAdmin(admin *a)
 {
@@ -82,6 +111,8 @@ void adminOptions(m1 movie,USERS U, int n)
     int mId, k;
     int price, status;
     char timing[20] = {'\0'};
+    char ch;
+    do {
     switch (n)
     {
     case 1:
@@ -124,7 +155,7 @@ void adminOptions(m1 movie,USERS U, int n)
         printf("Enter the User Id for search in the database=\n");
         scanf("%d", &mId);
         while (fread(&movie, sizeof(movie), 1, ft))
-            if (movie->movieId == mId)
+            if (movie.movieId == mId)
             {
                 flag = 1;
                 break;
@@ -148,26 +179,26 @@ void adminOptions(m1 movie,USERS U, int n)
             case 1:
                 printf("\nEnter the new price of the movie:- ");
                 scanf("%d", &price);
-                movie->moviePrice = price;
+                movie.moviePrice = price;
                 break;
 
             case 2:
                 printf("\nEnter the status of the movie:- ");
                 scanf("%d", &status);
-                movie->movieStatus = status;
+                movie.movieStatus = status;
                 break;
 
             case 3:
                 printf("\nEnter the new timings of the movie:- ");
                 scanf("%s", timing);
-                strcpy(movie->movieTimings, timing);
+                strcpy(movie.movieTimings, timing);
                 break;
 
             default:
                 break;
             }
 
-            fseek(ft, sizeof(movie) * (-1), SEEK_CUR);
+            //fseek(ft, sizeof(movie) * (-1), SEEK_CUR);
             fwrite(&movie, sizeof(movie), 1, ft);
             printf("\n Movie Details Updated Successfully\n");
             getMovie(movie);
@@ -195,15 +226,18 @@ void adminOptions(m1 movie,USERS U, int n)
         exit(EXIT_SUCCESS);
         break;
     }
+    printf("\nPlease enter a correct choice....\n");
+    getc(stdin);
+    scanf("%c",&ch);
+    }while(ch=='y');
 }
 
 void setMovie(m1 *movie)
 {
     printf("\nEnter Movie Name: ");
     scanf("%s",movie->movieName);
-   printf("\nEnter the movie timing: ");
-   scanf("%s",movie->movieTimings);
-   
+    printf("\nEnter the movie timing: ");
+    scanf("%s",movie->movieTimings);
     printf("\nEnter the movie price:");
     scanf("%d", &movie->moviePrice);
     //fflush(stdin);

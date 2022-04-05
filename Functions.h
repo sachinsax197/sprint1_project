@@ -1,9 +1,10 @@
-#ifndef USERS_H
-#define USERS_H
+#ifndef USER_H
+#define USER_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define buflen 20
+#include "Admin.h"
+#define buflen 30
 
 struct Users
 {
@@ -13,8 +14,11 @@ struct Users
     char Uname[buflen];
     int acc_status;
 };
-
 typedef struct Users USERS;
+
+
+
+
 
 struct movieReserationDetails
 {
@@ -48,17 +52,14 @@ void welcomeScreen()
     printf(" ******************************************************************\n");
     printf(" ==================================================================\n");
     printf(" ==================================================================\n");
-    printf("                              WELCOME TO \n");
-    printf("                      MOVIE TICKET BOOKING SYSTEM\n");
+    printf("                              WELCOME TO                           \n");
+    printf("                      MOVIE TICKET BOOKING SYSTEM                  \n");
     printf(" ==================================================================\n");
     printf(" ==================================================================\n");
     printf(" ******************************************************************\n");
     sleep(2);
        
 }
-
-
-
 
 
 
@@ -130,6 +131,8 @@ void options(USERS *U, int n)
     int j[10];
     m details;
     FILE *ft;
+    char ch; 
+    do {
     switch (n)
     {
     case 1:
@@ -145,7 +148,7 @@ void options(USERS *U, int n)
         else
         {           
             seatReservation(j, a);
-            printf("\nheelo");
+            //printf("\nheelo");
             ft = fopen("MovieReservationdetails.dat", "a+");
             details.movieId = mId;
             details.userid = U->Uid;
@@ -175,21 +178,14 @@ void options(USERS *U, int n)
         printf("\n Please Enter a valid Input");
         break;
     }
+     printf("\n Do you want to continue.....\n");
+     getc(stdin);
+     scanf("%c",&ch);
+    }while(ch=='y');
+
 }
 
-int movie(void)
-{
-    int i;
-    system("clear");
-    printf("\t\t\twhich movie you want to see?\n");
-    printf("\t\t\t----------------------------\n\n");
-    printf("\t\t\tpress 1 for Avengers: EndGame\n\n");
-    printf("\t\t\tpress 2 for Captain Marvel\n\n");
-    printf("\t\t\tpress 3 for Spider-Man: Far From Home\n");
-    scanf("%d", &i);
-    system("clear");
-    return i;
-}
+
 
 void seatReservation(int j[], int n)
 {
@@ -254,10 +250,10 @@ void guest(int n)
         else
         {           
             seatReservation(j, a);
-            printf("\nheelo");
+           // printf("\nheelo");
             ft = fopen("MovieReservationdetails.dat", "a+");
             details.movieId = mId;
-            details.userid = U->Uid;
+            //details.userid = U->Uid;
             details.ticketstatus = 1;
             for(i=0;i<n;i++)
             details.reservedSeats[i]=j[i];

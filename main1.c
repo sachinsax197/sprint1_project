@@ -89,7 +89,6 @@ int main(int argc, char const *argv[])
                 printf("\n No Database Found\n");
                 printf("\n First Create a Database\n");
               
-
             }
             ft=fopen("guest.dat","a+");
 			n2=choice4();
@@ -115,7 +114,8 @@ int main(int argc, char const *argv[])
 
             else
             {
-                printf("Login here=\n");
+                printf("\n\n");
+                printf("\n               Login here                \n");
 
                 printf("Enter the Admin Id for search in the database=");
                 scanf("%d", &uid);
