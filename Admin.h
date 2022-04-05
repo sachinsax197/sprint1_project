@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define buflen 20
+#define buflen 30
 
 struct Admin
 {
     int Uid;
-    char email[30];
+    char email[buflen];
     char Upasswd[buflen];
     char Uname[buflen];
 };
@@ -28,6 +28,8 @@ typedef struct movieDetails m1;
 void setAdmin(admin *);
 void getAdmin(admin);
 void adminOptions(m1 *,USERS ,int);
+void setMovie(m1 *);
+void getMovie(m1);
 
 void setAdmin(admin *a)
 {
@@ -84,7 +86,7 @@ void adminOptions(m1 *movie,USERS U, int n)
     {
     case 1:
         ft = fopen("Movies.dat", "a+");
-        setMovie(&movie);
+        setMovie(movie);
         getMovie(*movie);
         fwrite(&movie, sizeof(movie), 1, ft);
         if (fwrite != 0)
@@ -198,10 +200,9 @@ void setMovie(m1 *movie)
 {
     printf("\nEnter Movie Name: ");
     scanf("%s", movie->movieName);
-    //fflush(stdin);
     printf("\nEnter the movie timing: ");
     scanf("%s", movie->movieTimings);
-    fflush(stdin);
+   // fflush(stdin);
     printf("\nEnter the movie price:");
     scanf("%d", movie->moviePrice);
     //fflush(stdin);

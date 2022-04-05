@@ -34,21 +34,49 @@ int choice2(void);
 int choice2(void);
 void options(USERS *, int);
 void seatReservation(int *, int);
+int choice4(void);
+void guest(int n);
+void welcomeScreen(void);
+
 // int checkUser(USERS, int, char[]);
+
+
+void welcomeScreen()
+{
+
+    printf(" ******************************************************************\n");
+    printf(" ==================================================================\n");
+    printf(" ==================================================================\n");
+    printf("                              WELCOME TO \n");
+    printf("                      MOVIE TICKET BOOKING SYSTEM\n");
+    printf(" ==================================================================\n");
+    printf(" ==================================================================\n");
+    printf(" ******************************************************************\n");
+    sleep(2);
+       
+}
+
+
+
+
+
 
 // choice for the first page
 int choice(void)
 {
     system("clear");
     int choice;
+    printf(" ********************************************************************\n");
     printf("                      Movie Ticket Booking System\n");
-    printf(" ==================================================================\n");
+    printf(" ====================================================================\n");
     printf("||                  1- To User Login                                ||\n");
     printf("||                  2- To User Register                             ||\n");
     printf("||                  3- Guest User                                   ||\n");
     printf("||                  4- To Admin Login                               ||\n");
     printf("||                  5- Exit system:                                 ||\n");
     printf("||==================================================================||\n");
+    printf(" ********************************************************************\n");
+
     printf("  Enter your choice: ");
     scanf("%d", &choice);
     return choice;
@@ -59,6 +87,7 @@ int choice2(void)
 {
     system("clear");
     int choice;
+    printf(" ==================================================================\n");
     printf("               Movie Ticket Booking System\n");
     printf(" ==================================================================\n");
     printf("||             1- To Book Tickets                                ||\n");
@@ -113,8 +142,8 @@ void options(USERS *U, int n)
         else
         {
             j = (int *)malloc(sizeof(int) * n);
-            seatReservation(&j, n);
-            ft = fopen("MovieReservationdetails.dat", "a+");
+            seatReservation(j, n);
+            ft = fopen("MovieReservationdetails.dat", "a");
             details->movieId = i;
             details->userid = U->Uid;
             details->ticketstatus = 1;
@@ -162,7 +191,10 @@ int movie(void)
 void seatReservation(int *j, int n)
 {
     int i = 1, seatno;
-    printf("\n Please Select the Seat No.\n");
+    printf("\n======================================================\n");
+    printf("\n                  Screen This Side                    \n");
+    printf("\n======================================================\n");
+
 
     for (i = 1; i <= 100; i++)
     {
@@ -170,13 +202,70 @@ void seatReservation(int *j, int n)
         if (i % 10 == 0)
             printf("\n\n");
     }
+    printf("\n Please Select the Seat No.\n");
     printf("\nEnter Your Choice=");
     for (i = 0; i < n; i++)
     {
         scanf("%d", (j + i));
     }
-    return;
+   
 }
+
+
+int choice4(void)
+{
+
+    int choice;
+    printf("====================================================================\n");
+    printf("                      Movie Ticket Booking System\n");
+    printf("====================================================================\n");
+    printf("||                  1- To User Login                                ||\n");
+	printf("||                  2- Exit system                                  ||\n");
+	printf("Enter your choice : ");
+	scanf("%d",&choice);
+	return choice;
+}	
+
+void guest(int n)
+{
+
+    int i,a,*j,*b;
+    m *details;
+    FILE *ft;
+    switch (n)
+    {
+    case 1:
+         i = movie();
+         label1:
+         printf("\nHow many seats Would You like to book=");
+         scanf("%d",&a);
+         if(a>10){
+         printf("\n You are not allowed to book more than 10 tickets");
+         goto label1;
+         }
+         else{
+         j=(int *)malloc(sizeof(int)*n);
+         seatReservation(&j,n);
+         ft = fopen("MovieReservationdetails.dat", "a+");
+         details->movieId=i;
+       //  details->userid=U->Uid;
+         printf("Tickets Book Successfully");
+         }
+
+        break;
+	case 2:
+
+      exit(EXIT_SUCCESS);
+
+        break;
+        default:
+        printf("\n Please Enter a valid Input");
+        break;
+	}
+}
+
+
+
 
 // int checkUser(USERS U, int id, char pass[])
 // {
