@@ -2,8 +2,8 @@
 #define ADMIN_H
 #include <stdio.h>
 #include <stdlib.h>
+#include "Functions.h"
 
-#define buflen 30
 
 struct Admin
 {
@@ -87,6 +87,7 @@ void adminOptions(m1 *movie,USERS U, int n)
     case 1:
         ft = fopen("Movies.dat", "a+");
         setMovie(movie);
+	printf("\nHey");
         getMovie(*movie);
         fwrite(&movie, sizeof(movie), 1, ft);
         if (fwrite != 0)
@@ -106,7 +107,7 @@ void adminOptions(m1 *movie,USERS U, int n)
         else
         {
             printf("\nMovies Present in the Database\n");
-            while (fread(&movie, sizeof(movie), 1, ft))
+            while (fread(&movie, sizeof(movie), 0, ft))
                 getMovie(*movie);
         }
         
@@ -199,29 +200,30 @@ void adminOptions(m1 *movie,USERS U, int n)
 void setMovie(m1 *movie)
 {
     printf("\nEnter Movie Name: ");
-    scanf("%s", movie->movieName);
-    printf("\nEnter the movie timing: ");
-    scanf("%s", movie->movieTimings);
-   // fflush(stdin);
+    scanf("%s",movie->movieName);
+   printf("\nEnter the movie timing: ");
+   scanf("%s",movie->movieTimings);
+   
     printf("\nEnter the movie price:");
-    scanf("%d", movie->moviePrice);
+    scanf("%d", &movie->moviePrice);
     //fflush(stdin);
     movie->movieStatus=1;
     movie->movieId = (rand() % (10000 - 1 + 1)) + 1;
+    return;
 }
 
 void getMovie(m1 movie)
 {
     printf("\nMovie ID: ");
-    printf("%s", movie.movieId);
+    printf("%d", movie.movieId);
     printf("\nMovie Name: ");
     printf("%s", movie.movieName);
     printf("\nMovie Price: ");
-    printf("%s", movie.moviePrice);
+    printf("%d", movie.moviePrice);
     printf("\nMovie Timing: ");
-    printf("%d", movie.movieTimings);
+    printf("%s", movie.movieTimings);
     printf("\nMovie Status: ");
-    printf("%s", movie.movieStatus);
+    printf("%d", movie.movieStatus);
     printf("\n\n");
 }
 #endif
