@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Admin.h"
 #define buflen 20
 
 struct Users
@@ -130,6 +131,8 @@ void options(USERS *U, int n)
     int j[10];
     m details;
     FILE *ft;
+    char ch; 
+    do {
     switch (n)
     {
     case 1:
@@ -175,19 +178,32 @@ void options(USERS *U, int n)
         printf("\n Please Enter a valid Input");
         break;
     }
+     printf("\n Do you want to continue.....\n");
+     getc(stdin);
+     scanf("%c",&ch);
+    }while(ch=='y');
+
 }
 
 int movie(void)
 {
     int i;
     system("clear");
-    printf("\t\t\twhich movie you want to see?\n");
-    printf("\t\t\t----------------------------\n\n");
-    printf("\t\t\tpress 1 for Avengers: EndGame\n\n");
-    printf("\t\t\tpress 2 for Captain Marvel\n\n");
-    printf("\t\t\tpress 3 for Spider-Man: Far From Home\n");
-    scanf("%d", &i);
-    system("clear");
+   m1 movie;
+    ft = fopen("Users.dat", "r");
+        if (ft == NULL)
+        {
+            printf("\n No Database Found\n");
+            printf("\n First Create a Database\n");
+            break;
+        }
+        else
+        {
+            printf("\nAll Users Present in the Database\n");
+            while (fread(&U, sizeof(U), 1, ft))
+                getUsers(U);
+        }
+        break;
     return i;
 }
 

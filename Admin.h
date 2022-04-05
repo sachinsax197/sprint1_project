@@ -82,6 +82,8 @@ void adminOptions(m1 movie,USERS U, int n)
     int mId, k;
     int price, status;
     char timing[20] = {'\0'};
+    char ch;
+    do {
     switch (n)
     {
     case 1:
@@ -124,7 +126,7 @@ void adminOptions(m1 movie,USERS U, int n)
         printf("Enter the User Id for search in the database=\n");
         scanf("%d", &mId);
         while (fread(&movie, sizeof(movie), 1, ft))
-            if (movie->movieId == mId)
+            if (movie.movieId == mId)
             {
                 flag = 1;
                 break;
@@ -148,19 +150,19 @@ void adminOptions(m1 movie,USERS U, int n)
             case 1:
                 printf("\nEnter the new price of the movie:- ");
                 scanf("%d", &price);
-                movie->moviePrice = price;
+                movie.moviePrice = price;
                 break;
 
             case 2:
                 printf("\nEnter the status of the movie:- ");
                 scanf("%d", &status);
-                movie->movieStatus = status;
+                movie.movieStatus = status;
                 break;
 
             case 3:
                 printf("\nEnter the new timings of the movie:- ");
                 scanf("%s", timing);
-                strcpy(movie->movieTimings, timing);
+                strcpy(movie.movieTimings, timing);
                 break;
 
             default:
@@ -195,15 +197,18 @@ void adminOptions(m1 movie,USERS U, int n)
         exit(EXIT_SUCCESS);
         break;
     }
+    printf("\nPlease enter a correct choice....\n");
+    getc(stdin);
+    scanf("%c",&ch);
+    }while(ch=='y');
 }
 
 void setMovie(m1 *movie)
 {
     printf("\nEnter Movie Name: ");
     scanf("%s",movie->movieName);
-   printf("\nEnter the movie timing: ");
-   scanf("%s",movie->movieTimings);
-   
+    printf("\nEnter the movie timing: ");
+    scanf("%s",movie->movieTimings);
     printf("\nEnter the movie price:");
     scanf("%d", &movie->moviePrice);
     //fflush(stdin);
