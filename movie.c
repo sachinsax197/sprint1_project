@@ -267,7 +267,7 @@ void main(){
 
 
 
-	int ch;
+	/*int ch;
  	while(1){
 		printf("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");	
 		printf("\n\t Book Movie Ticket \n");
@@ -289,9 +289,32 @@ void main(){
 	    		case 0: exit(0);
 	    		default: printf("Enter a valid option.");
 	   	}
-	 }
+	 }*/
 }
 
+void setAdmin(admin *a)
+{
+    printf("\nEnter User Name: ");
+    scanf("%s", a->Uname);
+    printf("\nEnter the gmail id:");
+    scanf("%s", a->email);
+    printf("\nEnter User password: ");
+    scanf("%s", a->Upasswd);
+    a->Uid = (rand() % (10000 - 1 + 1)) + 1;
+}
+
+void getAdmin(admin U)
+{
+    printf("\nUser Name: ");
+    printf("%s", U.Uname);
+    printf("\nUser password: ");
+    printf("%s", U.email);
+    printf("\nUser ID: ");
+    printf("%d", U.Uid);
+    printf("\nUser password: ");
+    printf("%s", U.Upasswd);
+    printf("\n\n");
+}
 
 void adminOptions(int n)
 {
@@ -396,7 +419,7 @@ int choice(void)
 }
 
 
-int choice(void)
+/*int choice(void)
 {
     system("clear");
     int choice;
@@ -414,7 +437,7 @@ int choice(void)
     printf("  Enter your choice: ");
     scanf("%d", &choice);
     return choice;
-}
+}*/
 
 // choice after user login
 int choice2(void)
