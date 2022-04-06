@@ -340,9 +340,9 @@ int choice2(void)
     printf(" ==================================================================\n");
     printf("               Movie Ticket Booking System\n");
     printf(" ==================================================================\n");
-    printf("||             1- To Book Tickets                                ||\n");
-    printf("||             2- To View Tickets                                ||\n");
-    printf("||             3- Exit system:                                   ||\n");
+    printf("||             1- To Book Tickets                                 ||\n");
+    printf("||             2- To All Movies                                   ||\n");
+    printf("||             3- Exit system:                                    ||\n");
     printf("||================================================================||\n");
     printf("  Enter your choice: ");
     scanf("%d", &choice);
@@ -545,14 +545,14 @@ void book_ticket(){
       printf("\t----------------------------------THEATER BOOKING TICKET--------------------------\n");
         printf("\t=================================================================================\n");
         printf("\t Booking ID :  %d",ran);
-        printf("\t Customer  : %s\n",name);
+        printf("\n\t Customer  : %s\n",name);
         printf("\n\t\tMobile Number : %d",mobile);
-        printf("\n\t\tMovie name : %s",b.name);
+        printf("\n\t\tMovie name : %s\n",b.name);
         printf("\t\t\t                                          Date        : 06-04-2022\n");
         printf("\t                                              Hall        : 04\n");
         printf("\t                                              Total seats : %d  \n",total_seat);
         printf("\t                                              price . : %d  \n\n",b.cost);
-        printf("\n\t                                       Total Amount : %d",total_amount);
+        printf("\n\t                                       Total Amount : %d\n",total_amount);
         printf("\t==================================================================================\n");
 	
 	
