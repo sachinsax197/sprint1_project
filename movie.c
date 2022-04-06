@@ -3,6 +3,8 @@
 #include<string.h>
 #define buflen 30
 
+char r;
+
 struct Users
 {
     int Uid;
@@ -24,46 +26,7 @@ struct Admin
 
 typedef struct Admin admin;
 
-char r;
-void login(){
-	int a=0,i=0;
-	char uname[10],c=' ',pword[10],code[10],user[]="user",pass[]="pass";
-	do{
-		printf("\n---------------------------LOGIN----------------------\n");
-		printf("\n\t\tEnter Username: ");
-		scanf("%s",uname);
-		getchar();
-		printf("\t\tEnter Password: ");
-		/*while(i<10){
-			pword[i]=getch();
-			c=pword[i];
-			if(c==13)//enter key
-				break;
-			else
-				printf("*");
-			i++;
-		}
-		pword[i]='\0';
-		i=0;*/
-		scanf("%s",pword);
-		if(strcmp(uname,"user")==0 && strcmp(pword,"pass")==0){
-			printf("\n\nWELCOME TO THE BOOKING SYSTEM. LOGIN SUCCESSFUL\n");
-			printf("\n\t\tPress enter to continue........");
-			scanf("%c%c",&r,&r);
-			break;
-		}
-		else{
-			printf("\n\nLOGIN UNSUCCESSFUL.....");
-			a++;
-		}
-	}
-	while(a<2);
-	if(a>1){
-		printf("\nSorry you entered an incorrect password 3 times. Press Enter to continue");
-		scanf("%c%c",&r,&r);
-	}
-	system("clear");
-}
+
 struct book{
 	char code[20];
 	char name[20];
@@ -119,6 +82,8 @@ void main(){
                 printf("\n First Create a Database\n");
                 break;
             }
+            printf("\n");
+            printf("\n                   Login Here               \n");
             printf("\nEnter the gmail id for search in the database=");
             scanf("%s", &email);
             while (fread(&u, sizeof(u), 1, ft))
@@ -126,7 +91,7 @@ void main(){
                 if (strcmp(u.email, email) == 0)
                 {
                     flag = 1;
-                    printf("\nEnter the Password=\n");
+                    printf("\nEnter the Password=");
                     scanf("%s", &pass);
                     if (strcmp(u.Upasswd, pass) == 0)
                     {
@@ -163,21 +128,8 @@ void main(){
 
             break;
 
+        
         case 3:
-             ft = fopen("guest.dat", "r");
-            if (ft == NULL)
-            {
-                printf("\n No Database Found\n");
-                printf("\n First Create a Database\n");
-              
-            }
-            ft=fopen("guest.dat","a+");
-			n2=choice4();
-			guest(n2);
-
-            break;
-
-        case 4:
             ft = fopen("Admins.dat", "r");
             if (ft == NULL)
             {
@@ -221,12 +173,12 @@ void main(){
                 if (flag == 0)
                     printf("\n Admin id doesnot found in the database\n");
                 else if (flag == 1)
-                    printf("\nUserid Found But Password Doesn't Match..!!\n");
+                    printf("\nAdminid Found But Password Doesn't Match..!!\n");
             }
 
             break;
 
-        case 5:
+        case 4:
             exit(EXIT_SUCCESS);
             break;
 
@@ -244,52 +196,6 @@ void main(){
     fclose(ft);
    
 
-
-
-
-	//login();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*int ch;
- 	while(1){
-		printf("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");	
-		printf("\n\t Book Movie Ticket \n");
-		printf("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		printf("\nEnter >1< To Insert A Movie\nEnter >2< To View All Movies\nEnter >3< To Find A Movie\nEnter >4< To Book A Ticket(s)\nEnter >5< To View All Recent Transactions\nEnter >0< To Exit \nEnter your Choice :");
-	   	scanf("%d",&ch);
-	   	system("clear");	
-	   	switch (ch){
-	    		case 1: insert_details();
-	   			break;
-			case 2: view_All();
-	   			break;    		
-			case 3: find();
-	   			break;
-			case 4: book_ticket();
-				break;	
-			case 5: old_records();
-				break;
-	    		case 0: exit(0);
-	    		default: printf("Enter a valid option.");
-	   	}
-	 }*/
 }
 
 void setAdmin(admin *a)
@@ -331,7 +237,7 @@ void adminOptions(int n)
         
         break;
     case 3:
-old_records();
+     old_records();
 
         break;
    
@@ -343,7 +249,7 @@ old_records();
         printf("\nEnter a valid option\n");
         break;
     }
-    printf("\nPlease enter a correct choice....\n");
+    printf("\nDo you want to continue with the same option....(y/n):\n");
     getc(stdin);
     scanf("%c",&ch);
     }while(ch=='y');
@@ -376,7 +282,7 @@ void options(int n)
         printf("\n Please Enter a valid Input");
         break;
     }
-     printf("\n Do you want to continue.....\n");
+     printf("\n Do you want to continue with the same option....(y/n):\n");
      getc(stdin);
      scanf("%c",&ch);
     }while(ch=='y');
@@ -386,14 +292,20 @@ void options(int n)
 void welcomeScreen()
 {
 
-    printf(" ******************************************************************\n");
-    printf(" ==================================================================\n");
-    printf(" ==================================================================\n");
-    printf("                              WELCOME TO                           \n");
-    printf("                      MOVIE TICKET BOOKING SYSTEM                  \n");
-    printf(" ==================================================================\n");
-    printf(" ==================================================================\n");
-    printf(" ******************************************************************\n");
+
+    printf("\n\n\n");
+    printf(" ****************************************************************************************************\n");
+    printf(" =================================================================================================\n");
+    printf(" =================================================================================================\n");
+    printf("                                              WELCOME TO                           \n");
+    printf("                                     MOVIE TICKET BOOKING SYSTEM                  \n");
+    printf("                      \n                  \n");
+    printf("                                         Created By Group 2                  \n");
+    printf("                                           Team Members:-                  \n");
+    printf("                     Rubi Singh, Sachin Saxena, Austosh Zoting, Deeveprashad, Biplab                \n");
+    printf(" ==================================================================================================\n");
+    printf(" ===================================================================================================\n");
+    printf(" ****************************************************************************************************\n");
     sleep(2);
        
 }
@@ -408,8 +320,8 @@ int choice(void)
     printf(" ====================================================================\n");
     printf("||                  1- To User Login                                ||\n");
     printf("||                  2- To User Register                             ||\n");
-    printf("||                  4- To Admin Login                               ||\n");
-    printf("||                  5- Exit system:                                 ||\n");
+    printf("||                  3- To Admin Login                               ||\n");
+    printf("||                  4- Exit system:                                 ||\n");
     printf("||==================================================================||\n");
     printf(" ********************************************************************\n");
 
@@ -419,25 +331,6 @@ int choice(void)
 }
 
 
-/*int choice(void)
-{
-    system("clear");
-    int choice;
-    printf(" ********************************************************************\n");
-    printf("                      Movie Ticket Booking System\n");
-    printf(" ====================================================================\n");
-    printf("||                  1- To User Login                                ||\n");
-    printf("||                  2- To User Register                             ||\n");
-    printf("||                  3- Guest User                                   ||\n");
-    printf("||                  4- To Admin Login                               ||\n");
-    printf("||                  5- Exit system:                                 ||\n");
-    printf("||==================================================================||\n");
-    printf(" ********************************************************************\n");
-
-    printf("  Enter your choice: ");
-    scanf("%d", &choice);
-    return choice;
-}*/
 
 // choice after user login
 int choice2(void)
@@ -449,8 +342,7 @@ int choice2(void)
     printf(" ==================================================================\n");
     printf("||             1- To Book Tickets                                ||\n");
     printf("||             2- To View Tickets                                ||\n");
-    printf("||             3- To Cancel Tickets                              ||\n");
-    printf("||             4- Exit system:                                   ||\n");
+    printf("||             3- Exit system:                                   ||\n");
     printf("||================================================================||\n");
     printf("  Enter your choice: ");
     scanf("%d", &choice);
@@ -465,10 +357,8 @@ int choice3(void)
     printf(" ==================================================================\n");
     printf("||                  1- Add Movie                                    ||\n");
     printf("||                  2- View All Movie's List                        ||\n");
-    printf("||                  3- Update Movie Details                         ||\n");
-    printf("||                  4- View All Users                               ||\n");
-    printf("||                  5- View Total Collection                        ||\n");
-    printf("||                  6- Exit system:                                 ||\n");
+    printf("||                  3- View All Record                              ||\n");
+    printf("||                  4- Exit system:                                 ||\n");
     printf("||==================================================================||\n");
     printf("  Enter your choice: ");
     scanf("%d", &choice);
@@ -515,7 +405,7 @@ void insert_details(){
 	scanf("%d",&b.cost);
 	fp=fopen("data.txt","a");
 	if(fp == NULL)
-		printf("FIle not Found");
+		printf("\nA new record is creating\n");
 	else{
 		fprintf(fp,"%s %s %s %d \n",b.code,b.name,b.date,b.cost);
 		printf("Recorded Successfully\n");
@@ -538,8 +428,8 @@ void find(){
 		while(getc(fp) != EOF){
 			fscanf(fp,"%s %s %s %d",b.code,b.name,b.date,&b.cost);
 			if(strcmp(b.code,ch) == 0){	
-				printf("\n Record Found\n");
-				printf("\n\t\tCode :%s",b.code);
+				printf("\n Record Found\n\n");
+				printf("\n\t\tMovie Code :%s",b.code);
 				printf("\n\t\tMovie Name :%s",b.name);
 				printf("\n\t\tMovie Date :%s",b.date);
 				printf("\n\t\tPrice of Ticket :%d",b.cost);
@@ -561,6 +451,10 @@ void view_All(){
 	}
 	else{	
 		system("clear");
+        printf("\n\n");
+        printf("\nAll Movies Present\n");
+
+        printf("\nMovie Code Movie Name Ticket Price Release Date\n\n");
 		while((ch=fgetc(fp))!=EOF)
       			printf("%c",ch);	
 	}
@@ -573,6 +467,7 @@ void book_ticket(){
 	struct book b;
 	FILE *fp;
 	FILE *ufp;
+    int seatno[10];
 	int total_seat,mobile,total_amount;
 	char name[20];
 	char ch;
@@ -588,7 +483,7 @@ void book_ticket(){
       		printf("%c",ch);
 	}
 	fclose(fp);
-	printf("\n For Book ticket Choice Movie(Enter Movie Code First Latter Of Movie)\n");
+	printf("\n For Book ticket Choice Movie(Enter Movie Code)\n");
 	printf("\n Enter movie code :");
 	scanf("%s",movie_code);
 	fp = fopen("data.txt","r");
@@ -613,22 +508,60 @@ void book_ticket(){
 	scanf("%s",name);
 	printf("\n Mobile Number :");
 	scanf("%d",&mobile);
-	printf("\n Total number of tickets :");
-	scanf("%d",&total_seat);	
+    lebel1:
+	printf("\n Enter Total number of tickets :");
+	scanf("%d",&total_seat);
+    if (total_seat>10)
+    {
+    printf("\n You Are not allowed to book more than 10 tickets\n");
+    goto lebel1;
+    }
+    printf("\n==============================================================================\n");
+    printf("\n                                  Screen This Side                            \n");
+    printf("\n==============================================================================\n");
+
+    printf("\n\n\n");
+
+
+    for (int i = 1; i <= 60; i++)
+    {
+        printf("%d\t", i);
+        if (i % 10 == 0)
+            printf("\n\n");
+    }
+    printf("\n Please Select the Seat No.\n");
+    printf("\nEnter Your Choice=");
+    for (int i = 0; i < total_seat; i++)
+    {
+        scanf("%d",&seatno);
+    }
+
+
+
 	total_amount = b.cost * total_seat;
+
+   int ran=(rand() % (10000000 - 1 + 1)) + 1;
 	printf("\n ENJOY YOUR MOVIE \n");
-	printf("\n\t\tName : %s",name);
-	printf("\n\t\tMobile Number : %d",mobile);
-	printf("\n\t\tMovie name : %s",b.name);
-	printf("\n\t\tTotal seats : %d",total_seat);
-	printf("\n\t\tCost per ticket : %d",b.cost);
-	printf("\n\t\tTotal Amount : %d",total_amount);
+      printf("\t----------------------------------THEATER BOOKING TICKET--------------------------\n");
+        printf("\t=================================================================================\n");
+        printf("\t Booking ID :  %d",ran);
+        printf("\t Customer  : %s\n",name);
+        printf("\n\t\tMobile Number : %d",mobile);
+        printf("\n\t\tMovie name : %s",b.name);
+        printf("\t\t\t                                          Date        : 06-04-2022\n");
+        printf("\t                                              Hall        : 04\n");
+        printf("\t                                              Total seats : %d  \n",total_seat);
+        printf("\t                                              price . : %d  \n\n",b.cost);
+        printf("\n\t                                       Total Amount : %d",total_amount);
+        printf("\t==================================================================================\n");
+	
+	
 	ufp=fopen("oldTransection.txt","a");
 	if(ufp == NULL){
 		printf("File not Found");
 	}
 	else{
-		fprintf(ufp,"%s %d %d %d %s %d \n",name,mobile,total_seat,total_amount,b.name,b.cost);
+		fprintf(ufp,"%s %d %d %d %s %d %d \n",name,mobile,total_seat,total_amount,b.name,b.cost,seatno);
 		printf("\n Record insert Sucessfull to the old record file");
 	}
 	printf("\n");
@@ -648,6 +581,7 @@ void old_records(){
 	}
 	else{	
 		system("clear");
+        printf("\n All Transaction Record\n");
 		while((ch=fgetc(fp))!=EOF)
       		printf("%c",ch);	
 	}
